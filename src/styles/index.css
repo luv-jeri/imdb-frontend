@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --color-dark: #000000;
+  --bg-color: #121212;
+  --color-text: #ffffff;
+  --accent-color: #f5c519;
+  --color-sub-text: #b7b7b7;
+  --color-dark-hover : #1d1d1d;
+}
