@@ -1,0 +1,101 @@
+.header_container {
+  height: 75vh;
+  width: 100%;
+  display: flex;
+}
+
+.header_banner_container {
+  height: 100%;
+  min-width: 75%;
+}
+
+.header_list_banner_container {
+  height: 100%;
+  flex-grow: 25%;
+}
+
+/* Banner */
+
+.banner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: -3px -76px 40px -12px rgba(0, 0, 0, 0.75) inset;
+  background-image: url("https://occ-0-2482-3646.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfB_3OdRtaz66PnsryT47lx0db9ALFEBkiiRwf0sCaZ8-QKE1CEb6x3BGo9D5u7rQ4aDLUJyPSiXHt9GAmTBjX3GcNyU1EhW6sqn.webp?r=50f");
+  display: flex;
+}
+
+.icon {
+  padding: 1rem 0.5rem;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.303);
+  cursor: pointer;
+}
+
+.icon svg {
+  transition: stroke 0.2s ease-in-out;
+}
+
+.icon:hover svg {
+  stroke: var(--accent-color);
+}
+
+.icon_right {
+  right: 0;
+}
+
+.icon_left {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.content {
+  width: 100%;
+  height: 40%;
+  align-self: flex-end;
+  padding: 0rem 1rem;
+  display: flex;
+  cursor: pointer;
+}
+
+.content svg {
+  transition: stroke 0.2s ease-in-out;
+}
+
+.content:hover svg {
+  stroke: var(--accent-color);
+}
+
+.content svg polygon {
+  transition: fill 0.2s ease-in-out;
+}
+
+.content:hover svg polygon {
+  fill: var(--accent-color);
+}
+
+.poster {
+  height: 100%;
+}
+.content_details {
+  width: 100%;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.content_title {
+  margin-left: 1rem;
+}
+
+.content_title p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin-left: 2rem;
+}
