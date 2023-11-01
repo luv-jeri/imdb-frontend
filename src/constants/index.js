@@ -46,3 +46,5 @@ export const RowData = [
     url: URLS.documentaries,
   },
 ];
+
+export const IMAGE_BASE_URL = `https://image.tmdb.org/t/p/w500`;

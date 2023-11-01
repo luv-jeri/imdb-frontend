@@ -3,15 +3,14 @@ import s from "./Header.module.css";
 import { ChevronRightIcon, PlayIcon } from "../../icons";
 import Loader from "../../core/Loader/Loader";
 import axios from "axios";
+import { IMAGE_BASE_URL } from "../../../constants";
 
 const Banner = (props) => {
-  const imageBaseURL = `https://image.tmdb.org/t/p/w500`;
-  console.log(props);
   return (
     <div
       className={s.banner}
       style={{
-        backgroundImage: `url(${imageBaseURL}${props.backdrop_path})`,
+        backgroundImage: `url(${IMAGE_BASE_URL}${props.backdrop_path})`,
       }}
     >
       <div
@@ -32,7 +31,7 @@ const Banner = (props) => {
       </div>
       <div className={s.content}>
         <img
-          src={`${imageBaseURL}${props.poster_path}`}
+          src={`${IMAGE_BASE_URL}${props.poster_path}`}
           className={s.poster}
           alt={`${props.title}-poster`}
         />
@@ -54,6 +53,42 @@ const Banner = (props) => {
             <h2>Watch The Official Trailer</h2>
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const Card = (props) => {
+  console.log(props);
+  return (
+    <div
+      className={`${s.card_wrapper} ${
+        props.index === 0 ? s.first_card : s.n_card
+      }`}
+    >
+      <div className={s.card_poster_wrapper}>
+        <img src={`${IMAGE_BASE_URL}${props.poster_path}`} alt="poster" />
+      </div>
+      <div className={s.card_content}>
+        <div className={s.card_play_content}>
+          <PlayIcon />
+          <p>5:33</p>
+        </div>
+        <h1>Movie title</h1>
+        <h3>Subtile</h3>
+      </div>
+    </div>
+  );
+};
+
+const BannerList = (props) => {
+  return (
+    <div className={s.banner_list_wrapper}>
+      <h2 className={s.up_next_text}>Up Next</h2>
+      <div className={s.up_next_list}>
+        {props.data.map((movie, index) => {
+          return <Card {...movie} index={index} />;
+        })}
       </div>
     </div>
   );
@@ -131,7 +166,7 @@ const Header = () => {
         )}
       </div>
       <div className={s.header_list_banner_container}>
-        <h1>List Banner</h1>
+        <BannerList {...trending} />
       </div>
     </div>
   );
