@@ -6,12 +6,12 @@
 
 .header_banner_container {
   height: 100%;
-  flex-grow: 2;
+  min-width: 75%;
 }
 
 .header_list_banner_container {
   height: 100%;
-  flex-grow: 1;
+  flex-grow: 25%;
 }
 
 /* Banner */

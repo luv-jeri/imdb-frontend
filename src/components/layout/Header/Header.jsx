@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect } from "react";
 import s from "./Header.module.css";
 import { ChevronRightIcon, PlayIcon } from "../../icons";
 import Loader from "../../core/Loader/Loader";
