@@ -1,98 +1,9 @@
 import { useState, useEffect } from "react";
 import s from "./Header.module.css";
-import { ChevronRightIcon, PlayIcon } from "../../icons";
-import Loader from "../../core/Loader/Loader";
+import Loader from "@core/Loader/Loader";
 import axios from "axios";
-import { IMAGE_BASE_URL } from "../../../constants";
-
-const Banner = (props) => {
-  return (
-    <div
-      className={s.banner}
-      style={{
-        backgroundImage: `url(${IMAGE_BASE_URL}${props.backdrop_path})`,
-      }}
-    >
-      <div
-        className={`${s.icon} ${s.icon_left}`}
-        onClick={() => {
-          props.handleArrowClick(-1);
-        }}
-      >
-        <ChevronRightIcon />
-      </div>
-      <div
-        className={`${s.icon} ${s.icon_right}`}
-        onClick={() => {
-          props.handleArrowClick(1);
-        }}
-      >
-        <ChevronRightIcon />
-      </div>
-      <div className={s.content}>
-        <img
-          src={`${IMAGE_BASE_URL}${props.poster_path}`}
-          className={s.poster}
-          alt={`${props.title}-poster`}
-        />
-        <div className={s.content_details}>
-          <div>
-            <PlayIcon height="100" width="100" />
-          </div>
-          <div className={s.content_title}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h1>'{props.title}'</h1>
-              <p>{props.vote_average}</p>
-            </div>
-            <h2>Watch The Official Trailer</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Card = (props) => {
-  console.log(props);
-  return (
-    <div
-      className={`${s.card_wrapper} ${
-        props.index === 0 ? s.first_card : s.n_card
-      }`}
-    >
-      <div className={s.card_poster_wrapper}>
-        <img src={`${IMAGE_BASE_URL}${props.poster_path}`} alt="poster" />
-      </div>
-      <div className={s.card_content}>
-        <div className={s.card_play_content}>
-          <PlayIcon />
-          <p>5:33</p>
-        </div>
-        <h1>Movie title</h1>
-        <h3>Subtile</h3>
-      </div>
-    </div>
-  );
-};
-
-const BannerList = (props) => {
-  return (
-    <div className={s.banner_list_wrapper}>
-      <h2 className={s.up_next_text}>Up Next</h2>
-      <div className={s.up_next_list}>
-        {props.data.map((movie, index) => {
-          return <Card {...movie} index={index} />;
-        })}
-      </div>
-    </div>
-  );
-};
+import Banner from "@sections/Banner/Banner";
+import BannerList from "@sections/BannerList/BannerList";
 
 const Header = () => {
   const [trending, setTrending] = useState({
@@ -105,11 +16,22 @@ const Header = () => {
     index: -1,
   });
 
+  const [bannerMovies, setBannerMovies] = useState({
+    data: [],
+  });
+
   useEffect(() => {
     if (trending.data.length > 0) {
       setCurrentMovie({
         index: 0,
         ...trending.data[0],
+      });
+
+      // remove the first movie from the list
+      const movies = [...trending.data];
+      movies.shift();
+      setBannerMovies({
+        data: movies,
       });
     }
   }, [trending]);
@@ -137,6 +59,7 @@ const Header = () => {
 
   const handleArrowClick = (move) => {
     if (currentMovie.index + move < 0) {
+
       return setCurrentMovie({
         index: trending.data.length - 1,
         ...trending.data[trending.data.length - 1],
@@ -156,6 +79,16 @@ const Header = () => {
     });
   };
 
+  const handleBannerClick = (id) => {
+    const index = trending.data.findIndex((movie) => movie.id === id);
+    setCurrentMovie({
+      index,
+      ...trending.data[index],
+    });
+
+    
+  };
+
   return (
     <div className={`container ${s.header_container}`}>
       <div className={s.header_banner_container}>
@@ -166,7 +99,7 @@ const Header = () => {
         )}
       </div>
       <div className={s.header_list_banner_container}>
-        <BannerList {...trending} />
+        <BannerList {...bannerMovies} handleBannerClick={handleBannerClick} />
       </div>
     </div>
   );
