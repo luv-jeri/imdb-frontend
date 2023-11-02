@@ -1,5 +1,19 @@
-export const URL = "https://api.themoviedb.org/3/";
+import axios from "axios";
+
+export const TMDB_API_KEY = "https://api.themoviedb.org/3/";
+export const API_URL = "http://localhost:9001/api/v1/";
 export const API_KEY = "00cc4b4770c22d9316433c56df5c5eae";
+
+export const tmdbAxios = axios.create({
+  baseURL: TMDB_API_KEY,
+  params: {
+    api_key: API_KEY,
+  },
+});
+
+export const apiAxios = axios.create({
+  baseURL: API_URL,
+});
 
 export const URLS = {
   trending: "/trending/all/day",

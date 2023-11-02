@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import s from "./Header.module.css";
 import Loader from "@core/Loader/Loader";
-import axios from "axios";
+import { tmdbAxios } from "@/constants";
 import Banner from "@sections/Banner/Banner";
 import BannerList from "@sections/BannerList/BannerList";
 
@@ -38,7 +38,7 @@ const Header = () => {
 
   const fetchTrending = async () => {
     try {
-      const { data } = await axios.get("/trending/all/week");
+      const { data } = await tmdbAxios.get("/trending/all/week");
       setTrending({
         isLoading: false,
         data: data.results,

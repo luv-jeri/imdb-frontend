@@ -1,15 +1,9 @@
-import s from "./styles/App.module.css";
-import Nav from "./components/layout/Nav/Nav";
-import Header from "./components/layout/Header/Header";
-
+import AppRoute from "./routes/App.route";
+import AuthRoute from "./routes/Auth.route";
 
 function App() {
-  return (
-    <div className={s.wrapper}>
-      <Nav />
-      <Header />
-    </div>
-  );
+  const user = false;
+  return <>{user ? <AppRoute /> : <AuthRoute />}</>;
 }
 
 export default App;
