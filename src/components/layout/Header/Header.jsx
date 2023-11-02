@@ -59,7 +59,6 @@ const Header = () => {
 
   const handleArrowClick = (move) => {
     if (currentMovie.index + move < 0) {
-
       return setCurrentMovie({
         index: trending.data.length - 1,
         ...trending.data[trending.data.length - 1],
@@ -86,7 +85,12 @@ const Header = () => {
       ...trending.data[index],
     });
 
-    
+    // remove the clicked movie from the list
+    const movies = [...trending.data];
+    movies.splice(index, 1);
+    setBannerMovies({
+      data: movies,
+    });
   };
 
   return (
