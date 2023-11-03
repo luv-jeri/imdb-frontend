@@ -3,7 +3,6 @@ import { IMAGE_BASE_URL } from "../../../constants";
 import { PlayIcon } from "../../icons";
 
 const Card = (props) => {
-  console.log(props);
   return (
     <div
       className={`${s.card_wrapper} ${

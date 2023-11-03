@@ -2,7 +2,10 @@ import s from "./SignUp.module.css";
 import { useState } from "react";
 import { apiAxios } from "@constants";
 import Button from "@core/Button/Button";
-
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Input = ({ label, type, name, value, onChange, id }) => {
   return (
     <div className={s.input_container}>
@@ -21,6 +24,9 @@ const Input = ({ label, type, name, value, onChange, id }) => {
 };
 
 const SignUp = () => {
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +40,9 @@ const SignUp = () => {
         password,
         confirmPassword,
       });
+      navigate("/");
     } catch (error) {
+      alert("there is an error");
       console.log(error);
     }
   };
@@ -88,7 +96,17 @@ const SignUp = () => {
           <Button label="Sign Up" onClick={handleSignUp}>
             Sign Up
           </Button>
-          <Button label="Sign In">Sign In</Button>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            Sign In
+          </Link>
         </div>
       </div>
     </div>

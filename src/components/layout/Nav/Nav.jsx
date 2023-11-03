@@ -4,10 +4,12 @@ import s from "./Nav.module.css";
 import Button from "../../core/Button/Button";
 import { MenuIcon, BookmarkIcon } from "../../icons";
 import Menu from "../Menu/Menu";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
-
+  const { user, setUser } = useContext(AuthContext);
   const handleMenuClick = () => {
     setShowMenu(!showMenu);
   };
@@ -37,11 +39,19 @@ const Nav = () => {
           <a href="#">WatchList</a>
         </Button>
         <Button height="3rem">
-          <a href="#">SignIn</a>
+          <a href="#">{user ? user.name : "Sign In"}</a>
         </Button>
-        <Button height="3rem">
-          <a href="#">En</a>
-        </Button>
+        {user ? (
+          <Button
+            height="3rem"
+            onClick={() => {
+              setUser(null);
+              localStorage.removeItem("user");
+            }}
+          >
+            Logout
+          </Button>
+        ) : null}
       </div>
     </nav>
   );

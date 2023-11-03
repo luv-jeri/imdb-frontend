@@ -15,6 +15,8 @@ export const apiAxios = axios.create({
   baseURL: API_URL,
 });
 
+
+
 export const URLS = {
   trending: "/trending/all/day",
   oridinals: "/discover/movie?sort_by=popularity.desc",
