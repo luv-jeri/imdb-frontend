@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const TMDB_API_KEY = "https://api.themoviedb.org/3/";
-export const API_URL = "http://localhost:9001/api/v1/";
+export const API_URL = "https://imdb-backend-hjhd.onrender.com/api/v1";
 export const API_KEY = "00cc4b4770c22d9316433c56df5c5eae";
 
 export const tmdbAxios = axios.create({
@@ -14,8 +14,6 @@ export const tmdbAxios = axios.create({
 export const apiAxios = axios.create({
   baseURL: API_URL,
 });
-
-
 
 export const URLS = {
   trending: "/trending/all/day",

@@ -32,24 +32,14 @@ const SignUp = () => {
 
   const handleSignIn = async () => {
     try {
-      setUser({
-        email: "test",
-        name: "Sanjay",
+      const res = await apiAxios.post("/auth/login", {
+        email,
+        password,
       });
-      // const res = await apiAxios.post("/auth/login", {
-      //   email,
-      //   password,
-      // });
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          email: "test",
-          name: "Sanjay",
-        })
-      );
+      localStorage.setItem("user", JSON.stringify(res.data.content.user));
 
-      // setUser(res.data.content.user);
+      setUser(res.data.content.user);
     } catch (error) {
       console.log(error);
     }
