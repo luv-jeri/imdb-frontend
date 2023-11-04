@@ -32,14 +32,24 @@ const SignUp = () => {
 
   const handleSignIn = async () => {
     try {
-      const res = await apiAxios.post("/auth/login", {
-        email,
-        password,
+      setUser({
+        email: "test",
+        name: "Sanjay",
       });
+      // const res = await apiAxios.post("/auth/login", {
+      //   email,
+      //   password,
+      // });
 
-      localStorage.setItem("user", JSON.stringify(res.data.content.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: "test",
+          name: "Sanjay",
+        })
+      );
 
-      setUser(res.data.content.user);
+      // setUser(res.data.content.user);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +61,6 @@ const SignUp = () => {
         <div className={s.header}>
           <h1>Join Us !</h1>
         </div>
-
         <div className={s.content}>
           <Input
             label="Email"
